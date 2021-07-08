@@ -1,0 +1,85 @@
+/*
+기능: 브라우저마다 기본 폰트가 다르기에 이를 통일시키키 위한 reset.min.css를 불러오는 코드
+주석 사유: summernote의 작동방식 상 기본태그나 스타일을 적용시키게 되는데 여기서 기본태그 적용시 reset에 덮혀 스타일이 적용되지 않아 주석처리
+ @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"); 
+ */
+ 
+@font-face {
+  font-family: "NanumMyeongjoOTFBold";
+  font-weight: 700;
+  src: url("https://anima-uploads.s3.amazonaws.com/5c5f188470fe73000ba9ee1e/.9c28c1e161fccdb3906ef210fed5f467.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "MalgunGothicBold";
+  font-weight: 700;
+  src: url("https://anima-uploads.s3.amazonaws.com/5c04b5c70d7d1b000b3e23f1/malgunbd.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NanumMyeongjoOTFExtraBold";
+  font-weight: 1 1000;
+  src: url("../fonts/NanumMyeongjoExtraBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "MalgunGothicRegular";
+  font-weight: 1 1000;
+  src: url("../fonts/malgun.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+.container-center-horizontal {
+  pointer-events: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.container-center-horizontal > * {
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+.full-height-a {
+  height: 100%;
+}
+.screen * {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+/* .screen a {
+  text-decoration: none;
+  display: contents;
+} */
+.screen div {
+  -webkit-text-size-adjust: none;
+}
+.screen textarea:focus,
+.screen input:focus {
+  outline: none;
+}
+
+/*
+.dataTables_wrapper table.dataTable {
+	table-layout:fixed;
+}
+
+.dataTables_wrapper table.dataTable td {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+*/ 
+.dataTables_wrapper .dataTables_filter {
+	float: left;
+
+}
+
+
+.fileinput {
+  visibility: hidden;
+  position: absolute;
+}
