@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import '../node_modules/react-bootstrap-table/css/react-bootstrap-table.css'
+import 'react-bootstrap-table/css/react-bootstrap-table.css'
 
 function indexN(cell, row, enumObject, index) {
   return (<div>{index+1}</div>)

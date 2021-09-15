@@ -1,25 +1,34 @@
-
 import './App.css';
-import React  from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './assets/css/bootstrap.min.css';
 import './assets/css/styleguide.css';
 import './assets/css/artboard.css';
-import LogMng from './LogMng2';
-import Login from './Login';
+import 'semantic-ui-css/semantic.min.css';
 
-function App(){
+import LogMng from './Components/View/LogDetail';
+import Login from './Components/View/Login';
+import GroupMng from './Components/View/GroupMng';
+import FlexLayout from "flexlayout-react";
+import Welcome from "./Components/Welcome/Welcome";
+import Main from "./Main";
 
-  return(
-  <div>
-    <Router>
 
-        <Route path='/logmng' component={LogMng} />
-        <Route path='/' component={Login} />
+function App() {
+  // Context
 
-    </Router>
+  return (
+    <div>
+      <Router>
+      <Switch>
+      <Route path='/logmng' component={LogMng}/>
+      <Route path='/groupmng' component={GroupMng}/>
+      <Route path='/main' component={Main}/>
+      <Route path='/' component={Login}/>
+      </Switch>
+      </Router>
 
-  </div>
+    </div>
   )
 }
 

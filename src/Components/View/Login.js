@@ -1,12 +1,21 @@
 
-import React , { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import axios from 'axios';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 //import LogDetail from "./Log";
-import './assets/css/bootstrap.min.css';
-import './assets/css/styleguide.css';
-import './assets/css/artboard.css';
-import logoImg from './assets/images/logo-dark.png';
+import '../../assets/css/bootstrap.min.css';
+import '../../assets/css/styleguide.css';
+import '../../assets/css/artboard.css';
+import logoImg from '../../assets/images/logo-dark.png';
+import {LayoutContext} from "../../Layout/LayoutContext";
+import FlexLayout from "flexlayout-react";
+import {layoutFactory} from "../../Layout/layoutfactory";
+
+//import Confirm from "semantic-ui-react/dist/commonjs/addons/Confirm";
+
+
 
 function validate({ email, password }) {
   const errors = {};
@@ -60,45 +69,55 @@ function Login( { location, history } ){
         email :  email,
         password : password
       }
-      axios.post("http://localhost:8080/session", data)
-        .then((response)=> {
-          let responseOk = response && response.status === 201;
-          //&& response.statusText === 'OK';
-          if(responseOk){
-              const token ='Bearer '.concat(response.data.accessToken);
-              const config = {
-                headers: { "Authorization": token },
-              }
-              axios.get("http://localhost:8080/users/email/".concat(email), config)
-              .then((response)=>{
-                let responseOk = response && response.status === 200;
-                if(responseOk){
-                  debugger;
-                  //history.replace('/logMng');
-                  history.push('/logmng');
-
-                }else{
-                  alert('아이디 또는 패스워드를 확인해 주세요.');
-                  window.location.reload();
-                }
-              })
-              .catch((error)=> {
-                alert('아이디 또는 패스워드를 확인해 주세요.');
-                window.location.reload();
-              })
-          }else{
+      debugger;
+      axios.get("http://localhost:8082/users/"+data.email).then((response)=>{
+        let responseOk = response && response.status === 200;
+        if(responseOk){
+          history.push('/main');
+        }
+      }).catch((error)=> {
             alert('아이디 또는 패스워드를 확인해 주세요.');
             window.location.reload();
-          }
+      })
 
-        })
-        .catch((error)=> {
-          alert('아이디 또는 패스워드를 확인해 주세요.');
-          window.location.reload();
-        })
+      // axios.post("http://localhost:8082/session", data)
+      //   .then((response)=> {
+      //     let responseOk = response && response.status === 201;
+      //     //&& response.statusText === 'OK';
+      //     if(responseOk){
+      //         const token ='Bearer '.concat(response.data.accessToken);
+      //         const config = {
+      //           headers: { "Authorization": token },
+      //         }
+      //         axios.get("http://jarworker.doitcloud.co.kr:9001/users/email/".concat(email), config)
+      //         .then((response)=>{
+      //           let responseOk = response && response.status === 200;
+      //           if(responseOk){
+      //
+      //             //history.replace('/logMng');
+      //             history.push('/logmng');
+      //
+      //           }else{
+      //             alert('아이디 또는 패스워드를 확인해 주세요.');
+      //             window.location.reload();
+      //           }
+      //         })
+      //         .catch((error)=> {
+      //           alert('아이디 또는 패스워드를 확인해 주세요.');
+      //           window.location.reload();
+      //         })
+      //     }else{
+      //       alert('아이디 또는 패스워드를 확인해 주세요.');
+      //       window.location.reload();
+      //     }
+      //
+      //   })
+      //   .catch((error)=> {
+      //     alert('아이디 또는 패스워드를 확인해 주세요.');
+      //     window.location.reload();
+      //   })
     }
   }
-
 
 
 
@@ -181,6 +200,7 @@ function Login( { location, history } ){
         </div>
       </div>
     </div>
+
   )
 }
 
